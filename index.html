@@ -29,10 +29,11 @@
 </div>
 
 <div class="space-y-4">
-  <label class="block text-lg font-semibold mb-2">목표 숫자 (Target Number):</label>
+  <label class="block text-lg font-semibold mb-2">🎯 목표 숫자 (Target Number):</label>
   <input id="targetInput" type="number" value="10" min="1" max="100"
          class="w-full p-3 border border-gray-300 rounded-lg text-lg" />
 </div>
+
 
 <div class="flex justify-center gap-4 mt-8">
   <button onclick="startPracticeGame()"
@@ -57,22 +58,21 @@
   <div class="bg-white rounded-lg shadow-lg p-6">
     <div class="text-center mb-6">
       <h1 class="text-3xl font-bold text-blue-600 mb-2">넘즐 (NUMZZLE)</h1>
-      <p class="text-xl mb-4">목표 숫자 <span id="targetDisplay" class="font-bold text-red-600"></span>에 가장 근접한 수식을 만들어보세요!
-        <br>Make an expression as close as possible to the target number!</p>
+      <p class="text-xl mb-4">🎯<span id="targetDisplay" class="font-bold text-red-600"></span></p>
     </div>
 
-```
+
 <div class="grid grid-cols-3 gap-4 mb-6">
   <div class="text-center p-4 bg-blue-100 rounded-lg">
     <h3 class="font-bold">라운드<br>Round</h3>
     <p id="roundDisplay" class="text-2xl"></p>
   </div>
   <div class="text-center p-4 bg-green-100 rounded-lg">
-    <h3 class="font-bold">내 점수<br>My Score</h3>
+    <h3 class="font-bold">사용자<br>USER</h3>
     <p id="userScore" class="text-2xl">0</p>
   </div>
   <div class="text-center p-4 bg-red-100 rounded-lg">
-    <h3 class="font-bold">컴퓨터 점수<br>Computer Score</h3>
+    <h3 class="font-bold">컴퓨터<br>Computer</h3>
     <p id="computerScore" class="text-2xl">0</p>
   </div>
 </div>
