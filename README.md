@@ -1,7 +1,14 @@
 # 넘즐 (Numzzle) 🎯🧠  
-**넘즐(NUMZZLE) =넘버( NUMBER) + 퍼즐(PUZZLE)**
 
----
+**넘즐(Numzzle)**은 **넘버(Number)**와 **퍼즐(Puzzle)**을 결합한 이름입니다.
+또한 한글로는 “너무 즐겁다“는 말과 비슷해,
+공부를 게임처럼 즐겁게 하자는 의미도 담고 있습니다.
+
+Numzzle = Number + Puzzle
+Numzzle is a name that combines the words “Number” and “Puzzle.”
+In Korean, it also sounds like “Neomu Jeulgeopda,”
+which means “so much fun” —
+reflecting the idea of learning through joyful gameplay.
 
 ## 🎮 게임 소개 | Game Overview
 
@@ -13,8 +20,6 @@ Numzzle is a fun and strategic math game
 that challenges your sense of numbers and creativity.  
 Each round, you build an expression using cards to get  
 as close as possible to the **target number**.
-
----
 
 ## 📋 게임 규칙 | Game Rules
 
@@ -29,6 +34,7 @@ as close as possible to the **target number**.
 - **두 사람의 결과값이 같다면**, 둘 다 **10점을 획득**합니다.  
 - 총 **10라운드**를 진행하며, **누적 점수**가 더 높은 쪽이 승리합니다!
 
+
 - Set the target number and start the game.  
 - In each round, you receive **5 number cards + 4 operator cards** at random.  
 - Number cards can be **combined** (e.g., 3 and 1 → 31).  
@@ -39,13 +45,11 @@ as close as possible to the **target number**.
   the other gets **0**.  
 - If both results are equal, **both get 10 points**.  
 - After **10 rounds**, the player with the **higher total score wins**.
----
 
 ## 제작 | Credits
 
 - **기획, 디자인, 개발 총괄**: 한수수  
-- **코딩**: ChatGPT(재치), Claude(클라우드)  
-- **감사의 마음을 전합니다**: Nature Lee, Juju, Coxon
+- **코딩**: ChatGPT(재치), Claude
 - ** 지금 바로, 재미있게 공부해보세요! 🎲
 
 - **Planning, Design, Development**: Soosoo Han  
@@ -53,3 +57,6 @@ as close as possible to the **target number**.
 - **Special Thanks To**: Nature Lee, Juju, Coxon
 - **Try it now — and study with a smile! 😄
 
+## 🔗 지금 바로 플레이해보세요!
+
+👉 [넘즐 포털 바로가기](https://soosoohan.github.io/numzzle/)
