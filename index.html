@@ -4,8 +4,55 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>넘즐 (NUMZZLE)</title>
+<title>넘즐잼 (NUMZZLE JAM)</title>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<style>
+.cloud-btn {
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(33, 150, 243, 0.3);
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.cloud-btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 12px 40px rgba(33, 150, 243, 0.4);
+}
+
+.cloud-btn::before {
+content: ‘’;
+position: absolute;
+top: -50%;
+left: -50%;
+width: 200%;
+height: 200%;
+background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+0%, 100% { transform: translate(0, 0) rotate(0deg); }
+33% { transform: translate(10px, -10px) rotate(1deg); }
+66% { transform: translate(-5px, 5px) rotate(-1deg); }
+}
+
+.cloud-icon {
+display: inline-block;
+margin-right: 8px;
+font-size: 1.2em;
+position: relative;
+z-index: 1;
+}
+
+.cloud-text {
+position: relative;
+z-index: 1;
+}
+</style>
+
 </head>
 <body class="bg-blue-50 min-h-screen">
 
@@ -13,20 +60,27 @@
 
 <div id="startScreen" class="max-w-4xl mx-auto p-6">
   <div class="bg-white rounded-lg shadow-lg p-8">
-    <h1 class="text-4xl font-bold text-center mb-4 text-blue-600">NUMZZLE</h1>
-    <p class="text-center text-sm mb-8 text-gray-600">NUMZZLE is a combination of "NUMBER" and "PUZZLE".</p>
+    <h1 class="text-4xl font-bold text-center mb-4 text-blue-600">넘즐잼 (NUMZZLE JAM)</h1>
+    <p class="text-center text-sm mb-8 text-gray-600">NUMZZLE JAM is a combination of "NUMBER" and "PUZZLE".</p>
 
 
 <div class="p-6 bg-yellow-50 rounded-lg mb-6">
   <h3 class="text-xl font-bold mb-2 text-center">넘즐 규칙 (Game Rules)</h3>
   <p class="text-lg leading-relaxed text-gray-700">
     넘즐은 주어진 숫자와 연산기호를 이용하여 목표 숫자에 가장 가까운 결과를 만드는 게임입니다.
-    <br>수식의 결과가 목표 숫자에 딱 맞거나 가장 근접하면 10점을 받습니다.
+    <br>수식의 결과가 목표 숫자에 딱 맞거나 가장 근접하면 10점을 받습니다.<br>
+연습 모드에서는 컴퓨터와 같은 카드를 받습니다.<br>
+실전 모드에서는 컴퓨터와 다른 카드를 받습니다.
    <br><br>
     NUMZZLE is a game where you use given numbers and operators to create an expression as close as possible to the target number.
-    <br>The closer you get, the more points you score!
+    <br>The closer you get, the more points you score!<br>
+Practice Mode gives you the same cards as the computer. <br>
+  Challenge Mode gives you different cards. 
   </p>
+
 </div>
+
+
 
 <div class="space-y-4">
   <label class="block text-lg font-semibold mb-2">🎯 목표 숫자 (Target Number):</label>
@@ -34,19 +88,25 @@
          class="w-full p-3 border border-gray-300 rounded-lg text-lg" />
 </div>
 
-
 <div class="flex justify-center gap-4 mt-8">
   <button onclick="startPracticeGame()"
-    class="flex-1 bg-blue-600 text-white text-xl font-bold py-4 rounded-lg hover:bg-blue-700 transition-colors">
-    넘즐 연습 (Practice)
+    class="cloud-btn flex-1 text-blue-800 text-xl font-bold py-4 px-6 transition-colors relative">
+    <span class="cloud-text">
+      <span class="cloud-icon">☁️</span>
+      연습<br>Practice
+    </span>
   </button>
   <button onclick="startBattleGame()"
-    class="flex-1 bg-red-600 text-white text-xl font-bold py-4 rounded-lg hover:bg-red-700 transition-colors">
-    넘즐 실전 (Battle)
+    class="cloud-btn flex-1 text-red-800 text-xl font-bold py-4 px-6 transition-colors relative">
+    <span class="cloud-text">
+      <span class="cloud-icon">⛅</span>
+      실전<br>Battle
+    </span>
   </button>
 </div>
 
 <p class="text-center text-sm mt-6 text-gray-400">© 2025 한수수. All rights reserved.</p>
+
 
   </div>
 </div>
@@ -56,7 +116,7 @@
 <div id="gameScreen" class="hidden max-w-6xl mx-auto p-6">
   <div class="bg-white rounded-lg shadow-lg p-6">
     <div class="text-center mb-6">
-      <h1 class="text-3xl font-bold text-blue-600 mb-2">NUMZZLE</h1>
+      <h1 class="text-3xl font-bold text-blue-600 mb-2">넘즐잼 (NUMZZLE JAM)</h1>
       <p class="text-xl mb-4">🎯<span id="targetDisplay" class="font-bold text-red-600"></span></p>
     </div>
 
@@ -102,33 +162,38 @@
 
 <div id="actionButtons" class="flex gap-4 mb-6">
   <button onclick="submitExpression()"
-    class="flex-1 bg-green-600 text-white text-lg font-bold py-3 rounded-lg hover:bg-green-700 transition-colors">
-    제출<br>Submit
+    class="cloud-btn flex-1 text-green-800 text-lg font-bold py-3 px-6 transition-colors relative">
+    <span class="cloud-text">
+      <span class="cloud-icon">✅</span>
+      제출<br>Submit
+    </span>
   </button>
   <button onclick="resetExpression()"
-    class="flex-1 bg-gray-600 text-white text-lg font-bold py-3 rounded-lg hover:bg-gray-700 transition-colors">
-    초기화<br>Reset
+    class="cloud-btn flex-1 text-gray-800 text-lg font-bold py-3 px-6 transition-colors relative">
+    <span class="cloud-text">
+      <span class="cloud-icon">🔄</span>
+      초기화<br>Reset
+    </span>
   </button>
 </div>
 
-<div id="nextRoundArea" class="hidden text-center mb-6">
-  <button onclick="nextRound()"
-    class="bg-blue-600 text-white text-lg font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition-colors">
-    다음 라운드<br>Next Round
-  </button>
-</div>
-
-<div id="resultArea" class="hidden text-center p-6 bg-gray-100 rounded-lg">
-  <p class="text-lg text-gray-600">게임 종료</p>
-</div>
-
-<div class="text-center mt-6">
+<div class="flex justify-center gap-4 mt-6">
   <button onclick="backToStart()"
-    class="bg-gray-700 text-white text-lg font-bold py-3 px-6 rounded-lg hover:bg-gray-800 transition-colors">
-    처음으로<br>Back to Start
+    class="cloud-btn text-gray-800 text-lg font-bold py-3 px-6 transition-colors relative">
+    <span class="cloud-text">
+      <span class="cloud-icon">☁️</span>
+      설정으로 / Go to Settings
+    </span>
   </button>
-</div>
 
+  <a href="index.html"
+    class="cloud-btn text-blue-800 text-lg font-bold py-3 px-6 transition-colors relative inline-block">
+    <span class="cloud-text">
+      <span class="cloud-icon">🏠</span>
+      홈으로 / Go to Index
+    </span>
+  </a>
+</div>
 
   </div>
 </div>
@@ -146,10 +211,39 @@ let roundCompleted = false;
 let isBuildingNumber = false;
 let originalUserCards = [];
 
+// 카드덱 생성
+const createNumberDeck = () => {
+  const deck = [];
+  // 0~9: 각 8장씩
+  for (let num = 0; num <= 9; num++) {
+    for (let i = 0; i < 8; i++) deck.push(num);
+  }
+  return deck;
+};
+
+const createOperatorDeck = () => {
+  const deck = [];
+  // +: 30장, -: 30장, ×: 20장
+  for (let i = 0; i < 30; i++) deck.push('+');
+  for (let i = 0; i < 30; i++) deck.push('-');
+  for (let i = 0; i < 20; i++) deck.push('*');
+  return deck;
+};
+
+// 덱 섞기 및 카드 뽑기
+const shuffleAndDraw = (deck, count) => {
+  const shuffled = [...deck].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+};
+
+// 카드 생성 (7장: 숫자 4장 + 연산 3장)
 const generateCards = () => {
-  const numbers = Array.from({length: 5}, () => Math.floor(Math.random() * 9) + 1);
-  const operatorTypes = ['+', '-', '*', '/'];
-  const operators = Array.from({length: 4}, () => operatorTypes[Math.floor(Math.random() * 4)]);
+  const numberDeck = createNumberDeck();
+  const operatorDeck = createOperatorDeck();
+  
+  const numbers = shuffleAndDraw(numberDeck, 4);
+  const operators = shuffleAndDraw(operatorDeck, 3);
+  
   return [...numbers, ...operators];
 };
 
@@ -159,7 +253,7 @@ const renderCards = () => {
   userCards.forEach((card, index) => {
     const btn = document.createElement('button');
     btn.className = 'bg-white border-2 border-blue-300 rounded-lg p-3 text-xl font-bold';
-    btn.textContent = card;
+    btn.textContent = card === '*' ? '×' : card;
     btn.onclick = () => {
       if (!roundCompleted) {
         if (!isNaN(card)) {
@@ -170,7 +264,7 @@ const renderCards = () => {
             isBuildingNumber = true;
           }
         } else {
-          userExpression += card;
+          userExpression += (card === '*' ? '×' : card);
           isBuildingNumber = false;
         }
         document.getElementById('userExpression').textContent = userExpression;
@@ -188,12 +282,12 @@ const renderComputerCards = () => {
   computerCards.forEach(card => {
     const span = document.createElement('span');
     span.className = 'bg-white border-2 border-red-300 rounded-lg p-3 text-xl font-bold';
-    span.textContent = card;
+    span.textContent = card === '*' ? '×' : card;
     computerCardsArea.appendChild(span);
   });
 };
 
-// 컴퓨터가 최적의 답을 찾는 함수 (매우 똑똑함 - 복원)
+// 컴퓨터가 최적의 답을 찾는 함수
 const findBestExpression = (cards) => {
   const numbers = cards.filter(c => !isNaN(c));
   const operators = cards.filter(c => isNaN(c));
@@ -265,7 +359,7 @@ const findBestExpression = (cards) => {
               if (diff < bestDiff) {
                 bestDiff = diff;
                 bestVal = val;
-                bestExpr = expr;
+                bestExpr = expr.replace(/\*/g, '×');
                 usedCards = [a, b, op];
               }
             } catch {}
@@ -283,25 +377,25 @@ const findBestExpression = (cards) => {
           if (i !== j && j !== k && i !== k) {
             operators.forEach(op => {
               try {
-                // ab + c, ab - c, ab * c, ab / c
+                // ab + c, ab - c, ab * c
                 const expr1 = `${a}${b}${op}${c}`;
                 const val1 = eval(expr1);
                 const diff1 = Math.abs(targetNumber - val1);
                 if (diff1 < bestDiff) {
                   bestDiff = diff1;
                   bestVal = val1;
-                  bestExpr = expr1;
+                  bestExpr = expr1.replace(/\*/g, '×');
                   usedCards = [a, b, c, op];
                 }
 
-                // a + bc, a - bc, a * bc, a / bc
+                // a + bc, a - bc, a * bc
                 const expr2 = `${a}${op}${b}${c}`;
                 const val2 = eval(expr2);
                 const diff2 = Math.abs(targetNumber - val2);
                 if (diff2 < bestDiff) {
                   bestDiff = diff2;
                   bestVal = val2;
-                  bestExpr = expr2;
+                  bestExpr = expr2.replace(/\*/g, '×');
                   usedCards = [a, b, c, op];
                 }
               } catch {}
@@ -312,7 +406,7 @@ const findBestExpression = (cards) => {
     });
   }
 
-  // 3개 숫자 + 2개 연산자 (모든 조합)
+  // 3개 숫자 + 2개 연산자
   if (numbers.length >= 3 && operators.length >= 2) {
     numbers.forEach((a, i) => {
       numbers.forEach((b, j) => {
@@ -328,7 +422,7 @@ const findBestExpression = (cards) => {
                     if (diff < bestDiff) {
                       bestDiff = diff;
                       bestVal = val;
-                      bestExpr = expr;
+                      bestExpr = expr.replace(/\*/g, '×');
                       usedCards = [a, b, c, op1, op2];
                     }
                   } catch {}
@@ -341,17 +435,17 @@ const findBestExpression = (cards) => {
     });
   }
 
-  // 4개 숫자 + 3개 연산자
+  // 4개 숫자 + 3개 연산자 (모든 카드 사용)
   if (numbers.length >= 4 && operators.length >= 3) {
     numbers.forEach((a, i) => {
       numbers.forEach((b, j) => {
         numbers.forEach((c, k) => {
           numbers.forEach((d, l) => {
-            if (i !== j && j !== k && k !== l && i !== k && i !== l && j !== l) {
-              operators.forEach((op1, x) => {
-                operators.forEach((op2, y) => {
-                  operators.forEach((op3, z) => {
-                    if (x !== y && y !== z && x !== z) {
+            if (new Set([i, j, k, l]).size === 4) {
+              operators.forEach((op1, w) => {
+                operators.forEach((op2, x) => {
+                  operators.forEach((op3, y) => {
+                    if (new Set([w, x, y]).size === 3) {
                       try {
                         const expr = `${a}${op1}${b}${op2}${c}${op3}${d}`;
                         const val = eval(expr);
@@ -359,7 +453,7 @@ const findBestExpression = (cards) => {
                         if (diff < bestDiff) {
                           bestDiff = diff;
                           bestVal = val;
-                          bestExpr = expr;
+                          bestExpr = expr.replace(/\*/g, '×');
                           usedCards = [a, b, c, d, op1, op2, op3];
                         }
                       } catch {}
@@ -368,43 +462,6 @@ const findBestExpression = (cards) => {
                 });
               });
             }
-          });
-        });
-      });
-    });
-  }
-
-  // 5개 숫자 + 4개 연산자 (모든 카드 사용)
-  if (numbers.length >= 5 && operators.length >= 4) {
-    numbers.forEach((a, i) => {
-      numbers.forEach((b, j) => {
-        numbers.forEach((c, k) => {
-          numbers.forEach((d, l) => {
-            numbers.forEach((e, m) => {
-              if (new Set([i, j, k, l, m]).size === 5) {
-                operators.forEach((op1, w) => {
-                  operators.forEach((op2, x) => {
-                    operators.forEach((op3, y) => {
-                      operators.forEach((op4, z) => {
-                        if (new Set([w, x, y, z]).size === 4) {
-                          try {
-                            const expr = `${a}${op1}${b}${op2}${c}${op3}${d}${op4}${e}`;
-                            const val = eval(expr);
-                            const diff = Math.abs(targetNumber - val);
-                            if (diff < bestDiff) {
-                              bestDiff = diff;
-                              bestVal = val;
-                              bestExpr = expr;
-                              usedCards = [a, b, c, d, e, op1, op2, op3, op4];
-                            }
-                          } catch {}
-                        }
-                      });
-                    });
-                  });
-                });
-              }
-            });
           });
         });
       });
@@ -459,15 +516,14 @@ const startGame = () => {
 const submitExpression = () => {
   if (!userExpression) return alert('수식을 만들어주세요!');
   try {
-    const userVal = eval(userExpression);
+    const evalExpression = userExpression.replace(/×/g, '*');
+    const userVal = eval(evalExpression);
     
-    // 컴퓨터 카드 복사본으로 작업
     const computerCardsClone = [...computerCards];
     const { expr: computerExpr, usedCards } = findBestExpression(computerCardsClone);
-    const computerVal = eval(computerExpr);
+    const computerVal = eval(computerExpr.replace(/×/g, '*'));
     document.getElementById('computerExpression').textContent = computerExpr;
 
-    // 사용된 카드를 정확히 제거
     const newComputerCards = [...computerCards];
     usedCards.forEach(usedCard => {
       const index = newComputerCards.indexOf(usedCard);
@@ -502,10 +558,8 @@ const submitExpression = () => {
     roundCompleted = true;
 
     if (currentRound === 10) {
-      // 10라운드 종료 - 게임 끝
       document.getElementById('resultArea').classList.remove('hidden');
     } else {
-      // 1-9라운드는 다음 라운드 버튼 표시
       document.getElementById('nextRoundArea').classList.remove('hidden');
     }
     
@@ -517,7 +571,6 @@ const submitExpression = () => {
 
 const nextRound = () => {
   if (currentRound >= 10) {
-    // 10라운드가 끝나면 더 이상 진행하지 않음
     return;
   }
   
@@ -554,8 +607,15 @@ const resetExpression = () => {
   }
 };
 
+
+
+const goHome = () => {
+  // 넘즐 시리즈 인덱스 페이지로 이동
+  alert('넘즐 시리즈 홈으로 이동합니다!\n(실제로는 index.html로 이동)');
+  // window.location.href = 'index.html';
+};
+
 const backToStart = () => {
-  // 모든 변수 완전 초기화
   isPracticeMode = true;
   targetNumber = 10;
   currentRound = 1;
@@ -568,12 +628,10 @@ const backToStart = () => {
   isBuildingNumber = false;
   originalUserCards = [];
   
-  // 모든 영역 숨기기
   document.getElementById('nextRoundArea').classList.add('hidden');
   document.getElementById('resultArea').classList.add('hidden');
   document.getElementById('actionButtons').classList.remove('hidden');
   
-  // 화면 전환
   document.getElementById('startScreen').classList.remove('hidden');
   document.getElementById('gameScreen').classList.add('hidden');
 };
